@@ -2,12 +2,16 @@ package be.pool;
 
 import java.time.LocalTime;
 import java.util.Scanner;
+import RPi.GPIO as GPIO
+import time
 
 public class PumpTimer extends Thread{
     private LocalTime start;
     private LocalTime end;
     private  boolean isPumpOn;
     private  boolean isStopTimer = true;
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(21, GPIO.OUT)
 
 
     public PumpTimer(){
@@ -40,6 +44,11 @@ public class PumpTimer extends Thread{
     }
 
     public void setPumpOn(boolean pumpOn) {
+		if(pumpOn==true){
+		GPIO.output(21, GPIO.HIGH)
+	}else{
+		GPIO.output(21, GPIO.LOW)
+	}
         isPumpOn = pumpOn;
     }
 

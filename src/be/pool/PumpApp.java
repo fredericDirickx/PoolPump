@@ -18,8 +18,8 @@ public class PumpApp {
 
 
 
-        LocalTime start = LocalTime.of(13,10);
-        LocalTime end = LocalTime.of(13,15);
+        LocalTime start = LocalTime.of(16,51);
+        LocalTime end = LocalTime.of(16,53);
         Thread pumpTimer = new PumpTimer(start,end);
         Thread pumpStop = new PumpController();
 
