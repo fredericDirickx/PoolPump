@@ -1,4 +1,4 @@
-package be.pool;
+package src.be.pool;
 
 import org.w3c.dom.ls.LSOutput;
 
@@ -14,17 +14,17 @@ public class PumpApp {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
 
 
-        LocalTime start = LocalTime.of(16,51);
-        LocalTime end = LocalTime.of(16,53);
-        Thread pumpTimer = new PumpTimer(start,end);
-        Thread pumpStop = new PumpController();
+        LocalTime start = LocalTime.of(15,59);
+        LocalTime end = LocalTime.of(16,00);
+       PumpTimer pumpTimer = new PumpTimer(start,end);
+       
+       
+       pumpTimer.pumpOnTimer(3);
 
-        pumpTimer.start();
-        pumpStop.start();
 
 
 
