@@ -1,4 +1,4 @@
-package src.be.pool;
+package be.pool;
 
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -147,7 +147,7 @@ public class PumpTimer extends Thread{
       public void pumpOnTimer(int days){
           
           LocalDateTime startDay = LocalDateTime.now();
-          LocalDateTime endDay = startDay.plusMinutes(days); 
+          LocalDateTime endDay = startDay.plusDays(days);
 
         String pumpStatus = isPumpOn?"Pump is running":"Pump is off";
         System.out.println(pumpStatus);

@@ -1,4 +1,4 @@
-package src.be.pool;
+package be.pool;
 import java.util.concurrent.TimeUnit;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;

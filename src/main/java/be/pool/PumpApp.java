@@ -1,4 +1,4 @@
-package src.be.pool;
+package be.pool;
 
 import org.w3c.dom.ls.LSOutput;
 
