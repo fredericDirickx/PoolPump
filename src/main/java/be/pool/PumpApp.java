@@ -16,16 +16,17 @@ public class PumpApp {
 
     public static void main(String[] args) throws Exception {
 
-        LocalTime shortDuration = LocalTime.of(0,1);
-        LocalTime longDuration = LocalTime.of(0,2);
+        LocalTime shortDuration = LocalTime.of(1,0);
+        LocalTime longDuration = LocalTime.of(0,15);
 
         Planner planner = new Planner();
 
         LocalTime time = LocalTime.now();
 
-        planner.addTimers(new Timer(time.plusMinutes(1),shortDuration));
-        planner.addTimers(new Timer(time.plusMinutes(3),shortDuration));
-        planner.addTimers(new Timer(time.plusMinutes(5),shortDuration));
+        planner.addTimers(new Timer(LocalTime.of(00,00),longDuration));
+        planner.addTimers(new Timer(LocalTime.of(9,00),shortDuration));
+        planner.addTimers(new Timer(LocalTime.of(12,00),shortDuration));
+        planner.addTimers(new Timer(LocalTime.of(18,00),shortDuration));
 
         planner.run();
 
