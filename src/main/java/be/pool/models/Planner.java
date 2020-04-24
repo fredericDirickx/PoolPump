@@ -9,7 +9,7 @@ import java.util.Optional;
 public class Planner {
 
     private List<Timer> timerList = new ArrayList<>();
-    private Controller controller = new TestController();
+    private Controller controller = new PumpController();
 
     public static boolean isNowBetweenDates(LocalDateTime earliest, LocalDateTime latest) {
         int diffNowStart = LocalDateTime.now().compareTo(earliest);
