@@ -1,6 +1,7 @@
 package be.pool.models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -9,12 +10,12 @@ import java.util.Optional;
 public class Planner {
 
     private List<Timer> timerList = new ArrayList<>();
-    private Controller controller = new PumpController();
+    private Controller controller = new TestController();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("Y-MM-dd hh:mm");
 
     public static boolean isNowBetweenDates(LocalDateTime earliest, LocalDateTime latest) {
         int diffNowStart = LocalDateTime.now().compareTo(earliest);
         int diffNowEnd = LocalDateTime.now().compareTo(latest);
-
         if (diffNowStart > 0 && diffNowEnd < 0) {
             return true;
         }
@@ -36,31 +37,39 @@ public class Planner {
 
     public void run() throws InterruptedException {
 
-        System.out.println("run started");
+        System.out.println(dateNowFormatted()+ ": run started");
 
-        Thread.sleep(Timer
-                .durationInMilliSeconds(LocalDateTime.now(), getMinStartDate()));
+        LocalDateTime start = LocalDateTime.now();
 
-        while (isMustRun()) {
-            if (isTimerOn() && !controller.getStatusSwitch()) {
-                controller.setSwitch(true);
-                System.out.println(controller.toString());
-            } else if (!isTimerOn() && controller.getStatusSwitch()) {
-                controller.setSwitch(false);
-                System.out.println(controller.toString());
+        Thread.sleep(Timer.durationInMilliSeconds(LocalDateTime.now(),getMinStartDate()));
+
+
+
+            while (isMustRun()) {
+                if (isTimerOn() && !controller.getStatusSwitch()) {
+                    controller.setSwitch(true);
+                    System.out.println(dateNowFormatted() + ": " + controller.toString());
+                } else if (!isTimerOn() && controller.getStatusSwitch()) {
+                    controller.setSwitch(false);
+                    System.out.println(dateNowFormatted() + ": " + controller.toString());
+                }
+                Thread.sleep(5000);
             }
-            Thread.sleep(10000);
-        }
+
 
         controller.close();
 
-        System.out.println("run if finished");
+        System.out.println(dateNowFormatted()+ ": run if finished");
+    }
+
+    public String dateNowFormatted(){
+        return LocalDateTime.now().format(formatter);
     }
 
     public boolean isTimerOn() {
 
         for (Timer timer : timerList) {
-            if (timer.pumpOnTimer()) {
+            if (timer.isTimerOn()) {
                 return true;
             }
         }

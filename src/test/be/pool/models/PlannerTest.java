@@ -15,16 +15,16 @@ class PlannerTest {
     Planner planner = new Planner();
     LocalTime start = LocalTime.now();
     LocalTime duration = LocalTime.of(1,1);
-    Timer timer = new Timer(start,duration);
+    Timer timer = new Timer(start,duration,0);
 
 
     @Test
     void getTotalDuration() {
 
-        Timer a = new Timer(start.minusMinutes(2),duration);
-        Timer b = new Timer(start.plusMinutes(4),duration);
-        Timer c = new Timer(start.plusMinutes(6),duration);
-        Timer d = new Timer(start.plusMinutes(8),duration);
+        Timer a = new Timer(start.minusMinutes(2),duration,0);
+        Timer b = new Timer(start.plusMinutes(4),duration,0);
+        Timer c = new Timer(start.plusMinutes(6),duration,0);
+        Timer d = new Timer(start.plusMinutes(8),duration,0);
         planner.getTimerList().add(a);
         planner.getTimerList().add(b);
         planner.getTimerList().add(c);
@@ -43,7 +43,7 @@ class PlannerTest {
     @Test
     void isMustRunTest(){
         LocalTime duration = LocalTime.of(0,1);
-        Timer a = new Timer(start,duration);
+        Timer a = new Timer(start,duration,0);
         planner.addTimers(a);
 
         Assertions.assertTrue(planner.isTimerOn());
@@ -51,12 +51,5 @@ class PlannerTest {
     }
 
 
-    @Test
-    void isNowBetweenDates(){
-        planner.addTimers(timer);
-        System.out.println(planner.getMinStartDate());
-        System.out.println(planner.getMaxEndDate());
-        System.out.println(planner.isMustRun());
-    }
 
 }
