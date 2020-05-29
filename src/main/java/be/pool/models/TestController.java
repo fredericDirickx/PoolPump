@@ -14,7 +14,6 @@ public class TestController implements Controller {
         return isStatusSwitch;
     }
 
-    @Override
     public void setStatusSwitch(boolean statusSwitch) {
         this.isStatusSwitch = statusSwitch;
     }

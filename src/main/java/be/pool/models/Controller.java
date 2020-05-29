@@ -8,6 +8,4 @@ public interface Controller {
 
     boolean getStatusSwitch();
 
-    public void setStatusSwitch(boolean statusSwitch);
-
 }

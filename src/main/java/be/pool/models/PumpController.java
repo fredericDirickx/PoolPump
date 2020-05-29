@@ -6,7 +6,6 @@ import java.util.Collection;
 public class PumpController implements Controller {
 
     private final GpioController gPio = GpioFactory.getInstance();
-    private boolean isStatusSwitch;
     private GpioPinDigitalOutput pumpSwitch;
 
 
@@ -34,12 +33,9 @@ public class PumpController implements Controller {
 
     @Override
     public boolean getStatusSwitch() {
-        return isStatusSwitch;
+       return gPio.getState(pumpSwitch).isHigh();
     }
 
-    public void setStatusSwitch(boolean statusSwitch) {
-        isStatusSwitch = statusSwitch;
-    }
 
     @Override
     public void setSwitch(boolean isPumpOn) {
@@ -50,7 +46,6 @@ public class PumpController implements Controller {
             this.pumpSwitch.low();
         }
 
-        this.isStatusSwitch = isPumpOn;
     }
 
 
@@ -66,7 +61,7 @@ public class PumpController implements Controller {
     @Override
     public String toString() {
         return "PumpController{" +
-                "isStatusSwitch=" + isStatusSwitch +
+                "isStatusSwitch=" + getStatusSwitch() +
                 '}';
     }
 }
