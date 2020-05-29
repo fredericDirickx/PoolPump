@@ -29,13 +29,6 @@ public class PumpApp {
         planner.addTimers(new Timer(LocalTime.of(12,0),shortDuration,3));
         planner.addTimers(new Timer(LocalTime.of(18,0),shortDuration,3));
 
-
-
-        planner.run();
-
-
-
-
     }
 
 

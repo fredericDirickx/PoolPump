@@ -19,7 +19,7 @@ class PlannerTest {
 
 
     @Test
-    void getTotalDuration() {
+    void getTotalDuration(){
 
         Timer a = new Timer(start.minusMinutes(2),duration,0);
         Timer b = new Timer(start.plusMinutes(4),duration,0);
