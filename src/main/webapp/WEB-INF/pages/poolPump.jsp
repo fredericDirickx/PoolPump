@@ -14,5 +14,7 @@
     </form>
 </div>
 
+<span>${exceptionMessage}</span>
+
 </body>
 </html>

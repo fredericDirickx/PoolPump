@@ -25,9 +25,7 @@ public class PumpController implements Controller {
         }
 
         this.pumpSwitch = gPio.provisionDigitalOutputPin(RaspiPin.GPIO_29,
-                "pumpSwitch",
-                PinState.LOW);
-        pumpSwitch.low();
+                "pumpSwitch");
     }
 
 
