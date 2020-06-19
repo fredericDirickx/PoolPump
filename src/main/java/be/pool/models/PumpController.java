@@ -1,6 +1,7 @@
 package be.pool.models;
 import com.pi4j.io.gpio.*;
 import java.util.Collection;
+import java.util.Iterator;
 
 
 public class PumpController implements Controller {
@@ -17,10 +18,9 @@ public class PumpController implements Controller {
         Collection<GpioPin> pinList = gPio.getProvisionedPins();
 
         if (!pinList.isEmpty()) {
-            for (GpioPin pin : pinList) {
-
+            for (Iterator<GpioPin> iterator = pinList.iterator(); iterator.hasNext();) {
+                GpioPin pin = iterator.next();
                 gPio.unprovisionPin(pin);
-
             }
         }
 
